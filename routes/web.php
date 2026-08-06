@@ -55,3 +55,7 @@ Route::get(
     [CharacterController::class, 'detail']
 )
     ->name('characters.detail');
+
+    Route::get('/test', function () {
+    return 'Laravel is running!';
+});
