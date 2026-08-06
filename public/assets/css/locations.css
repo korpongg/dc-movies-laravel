@@ -1,0 +1,273 @@
+.locations-page{
+
+padding:70px 5%;
+
+background:
+linear-gradient(
+180deg,
+#fff,
+#f1f5f9
+);
+
+min-height:100vh;
+
+}
+
+
+
+.locations-tabs{
+
+display:flex;
+
+justify-content:center;
+
+gap:50px;
+
+margin-bottom:50px;
+
+}
+
+
+.locations-tabs button{
+
+font-size:24px;
+
+font-weight:700;
+
+color:#9ca3af;
+
+padding:15px 0;
+
+border:none;
+
+background:none;
+
+cursor:pointer;
+
+position:relative;
+
+transition:.3s;
+
+}
+
+
+.locations-tabs button:hover{
+
+color:#111827;
+
+}
+
+
+.locations-tabs button.active{
+
+color:#111827;
+
+}
+
+
+.locations-tabs button.active::after{
+
+content:"";
+
+position:absolute;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+height:3px;
+
+background:#111827;
+
+border-radius:20px;
+
+}
+
+
+
+.locations-grid{
+
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:30px;
+
+
+}
+
+
+
+
+
+.locations-card{
+
+
+background:#111827;
+
+border-radius:20px;
+
+overflow:hidden;
+
+text-decoration:none;
+
+color:white;
+
+transition:.35s;
+
+
+}
+
+
+
+.locations-card:hover{
+
+
+transform:translateY(-10px);
+
+
+}
+
+
+
+
+.locations-image{
+
+
+height:260px;
+
+overflow:hidden;
+
+
+}
+
+
+
+
+.locations-image img{
+
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+
+transition:.5s;
+
+}
+
+
+
+.locations-card:hover img{
+
+
+transform:scale(1.08);
+
+
+}
+
+
+
+.locations-info{
+
+
+padding:20px;
+
+
+}
+
+
+
+.locations-info h3{
+
+
+font-size:24px;
+
+font-weight:900;
+
+margin:0;
+
+
+}
+
+
+
+.locations-info span{
+
+
+display:inline-block;
+
+margin-top:10px;
+
+background:#374151;
+
+padding:5px 14px;
+
+border-radius:20px;
+
+font-size:12px;
+
+
+}
+
+
+
+.locations-info p{
+
+
+font-size:14px;
+
+color:#cbd5e1;
+
+
+}
+
+.locations-tabs button{
+    border:none;
+    outline:none;
+    background:none;
+
+    font-size:24px;
+    font-weight:800;
+    color:#9ca3af;
+
+    cursor:pointer;
+    position:relative;
+
+    padding:15px 0;
+
+    appearance:none;
+}
+
+
+.locations-tabs button:focus{
+    outline:none;
+}
+
+
+.locations-tabs button:focus-visible{
+    outline:none;
+}
+
+#locations-content{
+    transition:.35s ease;
+}
+
+
+#locations-content.loading{
+
+    filter:blur(8px);
+
+    opacity:.5;
+
+    transform:scale(.99);
+
+    pointer-events:none;
+
+}
