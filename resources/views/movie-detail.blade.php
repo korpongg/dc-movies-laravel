@@ -106,7 +106,7 @@
 
             <h3>Cast</h3>
 
-            <p>{{ $movie->cast }}</p>
+            <p>{{ $movie->actors }}</p>
 
         </div>
 
