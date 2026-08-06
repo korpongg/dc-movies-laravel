@@ -3,9 +3,10 @@ FROM php:8.1-cli
 RUN apt-get update && apt-get install -y \
     unzip \
     git \
-    curl
+    curl \
+    libpq-dev
 
-RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pdo_mysql pdo_pgsql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -15,6 +16,6 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-ENV PORT=10000
+EXPOSE 10000
 
-CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=$PORT"]
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
