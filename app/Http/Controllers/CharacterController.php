@@ -40,29 +40,72 @@ public function detail($slug)
 
     return view('character-detail', compact('character'));
 }
-   public function dc(Request $request)
+public function dc(Request $request)
 {
-    $characters = DB::table('dc_characters as c')
-        ->leftJoin('dc_images as i', function($join){
-            $join->on('c.id','=','i.character_id')
-                 ->where('i.image_type','profile');
-        })
-        ->select(
-            'c.id', 'c.name', 'c.slug', 'c.real_name', 
-            'c.gender', 'c.alignment', 'c.species', 
-            'c.color', 'c.status', 'i.image'
-        )
-        ->where('c.active', 1)
-        ->orderBy('c.id', 'desc')
-        ->paginate(24);
+    $type = $request->get('type', 'all');
 
-    // ส่ง Partial View เฉพาะตอนที่มาจาก AJAX ของ Pagination จริงๆ เท่านั้น
-    if ($request->ajax() && $request->has('page')) {
-        return view('components.character-content', compact('characters'));
+    if ($type === 'team') {
+
+        $teams = DB::table('dc_teams')
+            ->where('active', true)
+            ->orderBy('id', 'desc')
+            ->paginate(24);
+
+        return view('dc', compact('teams', 'type'));
     }
 
-    // ถ้าเข้าตรง หรือ Back กลับมาจากหน้า Detail ให้ส่ง Full View เสมอ
-    return view('dc', compact('characters'));
-}
+    if ($type === 'organization') {
 
+        $organizations = DB::table('dc_organizations')
+            ->where('active', true)
+            ->orderBy('id', 'desc')
+            ->paginate(24);
+
+        return view('dc', compact('organizations', 'type'));
+    }
+
+    $query = DB::table('dc_characters as c')
+        ->leftJoin('dc_images as i', function ($join) {
+            $join->on('c.id', '=', 'i.character_id')
+                ->where('i.image_type', 'profile');
+        })
+        ->select(
+            'c.id',
+            'c.name',
+            'c.slug',
+            'c.real_name',
+            'c.gender',
+            'c.alignment',
+            'c.species',
+            'c.color',
+            'c.status',
+            'i.image'
+        )
+        ->where('c.active', 1);
+
+    if ($type === 'hero') {
+        $query->where('c.alignment', 'Hero');
+    }
+
+    if ($type === 'villain') {
+        $query->where('c.alignment', 'Villain');
+    }
+
+    $characters = $query
+        ->orderBy('c.id', 'desc')
+        ->paginate(24)
+        ->withQueryString();
+
+    if ($request->ajax() && $request->has('page')) {
+        return view(
+            'components.character-content',
+            compact('characters', 'type')
+        );
+    }
+
+    return view(
+        'dc',
+        compact('characters', 'type')
+    );
+}
 }

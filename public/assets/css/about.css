@@ -1,0 +1,603 @@
+/* =========================================
+   DC UNIVERSE PAGE
+========================================= */
+
+.universe-hero {
+    position: relative;
+    min-height: 620px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2, 8, 23, .95),
+            rgba(2, 8, 23, .55),
+            rgba(2, 8, 23, .2)
+        ),
+        url('/images/background/superman.webp');
+
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+
+.universe-hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 750px;
+
+    padding: 100px 8%;
+}
+
+
+.universe-eyebrow,
+.section-label {
+    display: block;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    color: #38bdf8;
+
+    margin-bottom: 18px;
+}
+
+
+.universe-hero h1 {
+    margin: 0;
+
+    font-size: clamp(60px, 8vw, 110px);
+
+    line-height: .9;
+
+    font-weight: 900;
+
+    color: #fff;
+
+    letter-spacing: -4px;
+}
+
+
+.universe-hero p {
+    max-width: 600px;
+
+    margin: 30px 0;
+
+    font-size: 21px;
+    line-height: 1.7;
+
+    color: rgba(255,255,255,.8);
+}
+
+
+.universe-btn {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 18px;
+
+    padding: 15px 28px;
+
+    background: #fff;
+
+    color: #050505;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+
+.universe-btn:hover {
+    transform: translateY(-3px);
+
+    background: #38bdf8;
+
+    color: #fff;
+
+    text-decoration: none;
+}
+
+
+/* INTRO */
+
+.universe-intro {
+    padding: 110px 8%;
+
+    background: #fff;
+
+    text-align: center;
+}
+
+
+.universe-intro-inner {
+    max-width: 850px;
+
+    margin: auto;
+}
+
+
+.universe-intro h2 {
+    font-size: 52px;
+
+    font-weight: 900;
+
+    margin-bottom: 30px;
+
+    color: #111827;
+}
+
+
+.universe-intro p {
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: #6b7280;
+
+    margin-bottom: 15px;
+}
+
+
+/* FEATURE */
+
+.universe-feature {
+    min-height: 600px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    background: #020617;
+
+    color: #fff;
+}
+
+
+.universe-feature-image {
+    overflow: hidden;
+
+    min-height: 600px;
+}
+
+
+.universe-feature-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .6s;
+}
+
+
+.universe-feature:hover .universe-feature-image img {
+    transform: scale(1.04);
+}
+
+
+.universe-feature-content {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 80px 9%;
+}
+
+
+.universe-feature-content h2 {
+    font-size: 55px;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    margin: 0 0 30px;
+}
+
+
+.universe-feature-content p {
+    max-width: 520px;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: #cbd5e1;
+
+    margin-bottom: 35px;
+}
+
+
+.universe-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    width: fit-content;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-decoration: none;
+
+    border-bottom: 2px solid #38bdf8;
+
+    padding-bottom: 8px;
+
+    transition: .3s;
+}
+
+
+.universe-link:hover {
+    color: #38bdf8;
+
+    gap: 22px;
+
+    text-decoration: none;
+}
+
+
+/* MOVIES */
+
+.universe-movies {
+    background: #0f172a;
+}
+
+
+.universe-movies .universe-feature-image {
+    order: 2;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.universe-movies .universe-feature-image img {
+   
+
+   width: 100%;
+
+
+}
+
+
+/* LOCATIONS */
+
+.universe-locations {
+    padding: 110px 7%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8fafc,
+            #e2e8f0
+        );
+
+    text-align: center;
+}
+
+
+.universe-location-header {
+    max-width: 800px;
+
+    margin: auto auto 55px;
+}
+
+
+.universe-location-header h2 {
+    font-size: 52px;
+
+    font-weight: 900;
+
+    color: #111827;
+
+    margin-bottom: 20px;
+}
+
+
+.universe-location-header p {
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    color: #64748b;
+}
+
+
+.location-preview-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+    max-width: 1300px;
+
+    margin: auto auto 50px;
+}
+
+
+.location-preview {
+    position: relative;
+
+    height: 300px;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    background: #111827;
+}
+
+
+.location-preview-bg {
+    position: absolute;
+
+    inset: 0;
+
+    background-size: cover;
+    background-position: center;
+
+    transition: transform .5s;
+}
+
+
+.location-preview:hover .location-preview-bg {
+    transform: scale(1.08);
+}
+
+
+.location-preview-bg.gotham {
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.3),
+            rgba(0,0,0,.7)
+        ),
+        url('/images/background/batman.webp');
+}
+
+
+.location-preview-bg.metropolis {
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.25),
+            rgba(0,0,0,.7)
+        ),
+        url('/images/background/superman.webp');
+}
+
+
+.location-preview-bg.atlantis {
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.2),
+            rgba(0,0,0,.75)
+        ),
+        url('/images/background/aquanman.webp');
+}
+
+
+.location-preview-content {
+    position: absolute;
+
+    inset: auto 25px 25px;
+
+    text-align: left;
+
+    color: #fff;
+}
+
+
+.location-preview-content span {
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color: #38bdf8;
+}
+
+
+.location-preview-content h3 {
+    margin: 8px 0 0;
+
+    font-size: 30px;
+
+    font-weight: 900;
+}
+
+
+.location-button {
+    color: #111827;
+}
+
+
+/* FINAL */
+
+.universe-final {
+    position: relative;
+
+    min-height: 500px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        url('/images/main/dcall.webp');
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+
+.universe-final-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2,6,23,.92),
+            rgba(2,6,23,.65)
+        );
+}
+
+
+.universe-final-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 800px;
+
+    padding: 80px 30px;
+
+    color: #fff;
+}
+
+
+.universe-final-content h2 {
+    font-size: 58px;
+
+    font-weight: 900;
+
+    margin: 0 0 25px;
+}
+
+
+.universe-final-content p {
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: #cbd5e1;
+
+    margin-bottom: 35px;
+}
+
+
+.universe-final-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+.universe-btn-outline {
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,.6);
+
+    color: #fff;
+}
+
+
+.universe-btn-outline:hover {
+    background: #fff;
+
+    color: #111;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .universe-hero {
+        min-height: 550px;
+    }
+
+
+    .universe-hero-content {
+        padding: 80px 25px;
+    }
+
+
+    .universe-hero h1 {
+        font-size: 58px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .universe-intro {
+        padding: 80px 25px;
+    }
+
+
+    .universe-intro h2,
+    .universe-location-header h2 {
+        font-size: 40px;
+    }
+
+
+    .universe-feature {
+        grid-template-columns: 1fr;
+    }
+
+
+    .universe-feature-image {
+        min-height: 400px;
+    }
+
+
+    .universe-feature-content {
+        padding: 70px 30px;
+    }
+
+
+    .universe-feature-content h2 {
+        font-size: 42px;
+    }
+
+
+    .universe-movies .universe-feature-image {
+        order: 0;
+    }
+
+
+    .location-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .universe-final-content h2 {
+        font-size: 42px;
+    }
+
+}

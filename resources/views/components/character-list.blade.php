@@ -1,37 +1,47 @@
 <ul class="p-chara_in__list">
 
-    @foreach($characters as $character)
+@foreach($characters as $character)
 
-        <li class="p-chara_in__list-item" >
+<li class="p-chara_in__list-item">
 
-         <a href="{{ route('characters.detail',$character->slug) }}"
-   class="character-card">
+    <a href="{{ route('characters.detail', $character->slug) }}"
+       class="character-card">
 
+        <div class="character-image">
 
-    <div class="character-image">
+            <img
+                src="{{ asset($character->image) }}"
+                alt="{{ $character->name }}"
+            >
 
-        <img 
-        src="{{ asset($character->image) }}"
-        alt="{{ $character->name }}">
+            <div class="character-gradient"></div>
 
+            <div class="character-number">
+                {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
+            </div>
 
-    </div>
+            <div class="character-info">
 
+                <span class="character-type">
+                    {{ $character->alignment ?? 'DC UNIVERSE' }}
+                </span>
 
-    <div class="character-info">
+                <h3>
+                    {{ $character->name }}
+                </h3>
 
-        <h3>
-            {{ $character->name }}
-        </h3>
+                <span class="character-arrow">
+                    VIEW PROFILE →
+                </span>
 
+            </div>
 
-    </div>
+        </div>
 
+    </a>
 
-</a>
+</li>
 
-        </li>
-
-    @endforeach
+@endforeach
 
 </ul>

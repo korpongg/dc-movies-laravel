@@ -14,10 +14,7 @@
 
         </a>
 
-        <button class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#mainNavbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar">
 
             <span class="navbar-toggler-icon"></span>
 
@@ -36,36 +33,33 @@
 
                 <li class="nav-item">
                     <a href="{{ route('characters') }}"
-                        class="nav-link {{ request()->routeIs('characters') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('characters*') ? 'active' : '' }}">
                         Characters
                     </a>
                 </li>
 
                 <li class="nav-item">
-    
-                    <a href="{{ route('movies') }}"
-                        class="nav-link {{ request()->routeIs('movies') ? 'active' : '' }}">
+
+                    <a href="{{ route('movies') }}" class="nav-link {{ request()->routeIs('movies*') ? 'active' : '' }}">
                         Movies
                     </a>
                 </li>
 
- <li class="nav-item">
-    
+                <li class="nav-item">
+
                     <a href="{{ route('locations') }}"
-                        class="nav-link {{ request()->routeIs('locations') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('locations*') ? 'active' : '' }}">
                         Location
                     </a>
                 </li>
-        
+
             </ul>
 
             <div class="dc-search">
 
                 <i class="fas fa-search"></i>
 
-                <input
-                    type="text"
-                    placeholder="Search heroes...">
+                <input type="text" placeholder="Search heroes...">
 
             </div>
 

@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+    $peacemaker = $characters->firstWhere('slug', 'peacemaker');
+    $supergirl = $characters->firstWhere('slug', 'supergirl');
+    $superman = $characters->firstWhere('slug', 'superman');
+    $aquaman = $characters->firstWhere('slug', 'aquaman');
+    $flash = $characters->firstWhere('slug', 'the-flash');
+    $blackadam = $characters->firstWhere('slug', 'black-adam');
+@endphp
+
 
         <section class="dc-banner">
             <div class="banner-wrapper">
@@ -23,11 +32,12 @@
 
                     <div class="banner-buttons">
 
-                        <a href="#" class="btn-primary">
-                            EXPLORE NOW ➔
-                        </a>
+                    <a href="{{ route('about') }}" class="btn-primary">
+    EXPLORE NOW ➔
+</a>
 
-                        <a href="#" class="btn-secondary">
+
+                       <a href="{{ route('characters') }}" class="btn-secondary">
                             VIEW CHARACTERS ➔
                         </a>
 
@@ -65,9 +75,11 @@
 
                     <img src="{{ asset('images/chars/peacemaker-chars.webp') }}" class="tile-character" alt="Peacemaker">
 
-                    <a href="#" class="btn-shop">
-                        CHARACTER
-                    </a>
+                   @if($peacemaker)
+    <a href="{{ route('characters.detail', $peacemaker->slug) }}" class="btn-shop">
+        CHARACTER
+    </a>
+@endif
 
                 </div>
                 <!-- Supergirl -->
@@ -87,9 +99,11 @@
 
                     <img src="{{ asset('images/chars/supergirl-chars.webp') }}" class="tile-character" alt="Supergirl">
 
-                    <a href="#" class="btn-shop">
-                        CHARACTER
-                    </a>
+                  @if($supergirl)
+    <a href="{{ route('characters.detail', $supergirl->slug) }}" class="btn-shop">
+        CHARACTER
+    </a>
+@endif
 
                 </div>
 
@@ -112,9 +126,11 @@
 
                     <img src="{{ asset('images/chars/superman-chars.webp') }}" class="tile-character" alt="Superman">
 
-                    <a href="#" class="btn-shop">
-                        CHARACTER
-                    </a>
+                         @if($superman)
+    <a href="{{ route('characters.detail', $superman->slug) }}" class="btn-shop">
+        CHARACTER
+    </a>
+@endif
 
                 </div>
 
@@ -137,10 +153,11 @@
 
                     <img src="{{ asset('images/chars/aquaman-chars.webp') }}" class="tile-character" alt="Aquaman">
 
-                    <a href="#" class="btn-shop">
-                        CHARACTER
-                    </a>
-
+                             @if($aquaman)
+                                <a href="{{ route('characters.detail', $aquaman->slug) }}" class="btn-shop">
+                                    CHARACTER
+                                </a>
+                            @endif
                 </div>
 
 
@@ -162,9 +179,11 @@
 
                     <img src="{{ asset('images/chars/flash-chars.webp') }}" class="tile-character" alt="Flash">
 
-                    <a href="#" class="btn-shop">
-                        CHARACTER
-                    </a>
+                           @if($flash)
+    <a href="{{ route('characters.detail', $flash->slug) }}" class="btn-shop">
+        CHARACTER
+    </a>
+@endif
 
                 </div>
 
@@ -187,9 +206,12 @@
 
                     <img src="{{ asset('images/chars/blackadam-chars.webp') }}" class="tile-character" alt="Black Adam">
 
-                    <a href="#" class="btn-shop">
-                        CHARACTER
-                    </a>
+                
+                           @if($blackadam)
+    <a href="{{ route('characters.detail', $blackadam->slug) }}" class="btn-shop">
+        CHARACTER
+    </a>
+@endif
 
                 </div>
 
@@ -387,19 +409,22 @@
 
             <div class="theme-scroll" id="movieScroll">
 
-                @foreach($movies as $movie)
+             @foreach($movies as $movie)
 
-                    <div class="movie-poster-card">
+    <a href="{{ url('/movies/' . $movie->id) }}" class="movie-poster-card">
 
-                        <img src="{{ asset($movie->poster) }}">
+        <img
+            src="{{ asset($movie->poster) }}"
+            alt="{{ $movie->title }}"
+        >
 
-                        <div class="movie-year">
-                            {{ $movie->release_year }}
-                        </div>
+        <div class="movie-year">
+            {{ $movie->release_year }}
+        </div>
 
-                    </div>
+    </a>
 
-                @endforeach
+@endforeach
 
             </div>
 

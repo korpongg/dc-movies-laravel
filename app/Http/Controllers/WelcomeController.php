@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\DcMovie;
 
 class WelcomeController extends Controller
@@ -13,9 +14,13 @@ class WelcomeController extends Controller
             ->orderByDesc('release_year')
             ->get();
 
+        $characters = DB::table('dc_characters')
+            ->where('active', 1)
+            ->get();
 
         return view('welcome')->with([
             'movies' => $movies,
+            'characters' => $characters,
         ]);
     }
 }

@@ -20,6 +20,7 @@
                              <link href="{{ asset('/assets/css/locations.css') }}" rel="stylesheet">
                               <link href="{{ asset('/assets/css/characterdetail.css') }}" rel="stylesheet">
         <link href="{{ asset('/assets/css/list.css') }}" rel="stylesheet">
+            <link href="{{ asset('/assets/css/about.css') }}" rel="stylesheet">
         <link href="{{ asset('/assets/css/navbar.css') }}" rel="stylesheet">
                 <link href="{{ asset('/assets/css/footer.css') }}" rel="stylesheet">
                 

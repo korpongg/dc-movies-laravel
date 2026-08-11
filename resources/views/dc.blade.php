@@ -44,28 +44,31 @@
 
                 <ul>
 
-                    <li class="active">
-                        All Characters
+                    <li class="{{ $type === 'all' ? 'active' : '' }}">
+                        <a href="{{ route('characters') }}">
+                            All Characters
+                        </a>
                     </li>
 
-                    <li>
-                        Heroes
+                    <li class="{{ $type === 'hero' ? 'active' : '' }}">
+                        <a href="{{ route('characters', ['type' => 'hero']) }}">
+                            Heroes
+                        </a>
                     </li>
 
-                    <li>
-                        Villains
+                    <li class="{{ $type === 'villain' ? 'active' : '' }}">
+                        <a href="{{ route('characters', ['type' => 'villain']) }}">
+                            Villains
+                        </a>
                     </li>
 
-                    <li>
-                        Teams
-                    </li>
-
-                    <li>
-                        Organizations
+                    <li class="{{ $type === 'team' ? 'active' : '' }}">
+                        <a href="{{ route('characters', ['type' => 'team']) }}">
+                            Teams
+                        </a>
                     </li>
 
                 </ul>
-
             </aside>
 
 
@@ -75,7 +78,19 @@
 
                 <div id="character-content">
 
-                    @include('components.character-content')
+                    @if($type === 'team')
+
+                        @include('components.team-content')
+
+                    @elseif($type === 'organization')
+
+                        @include('components.organization-content')
+
+                    @else
+
+                        @include('components.character-content')
+
+                    @endif
 
                 </div>
 
@@ -86,60 +101,60 @@
         </div>
 
     </section>
-<script>
-(() => {
-    const container = document.getElementById("character-content");
-    if (!container) return;
+    <script>
+        (() => {
+            const container = document.getElementById("character-content");
+            if (!container) return;
 
-    async function loadPage(url, push = true) {
-        try {
-            container.style.opacity = "0.5";
+            async function loadPage(url, push = true) {
+                try {
+                    container.style.opacity = "0.5";
 
-            const response = await fetch(url, {
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest"
+                    const response = await fetch(url, {
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest"
+                        }
+                    });
+
+                    const html = await response.text();
+                    container.innerHTML = html;
+
+                    if (push) {
+                        history.pushState({ isAjax: true, page: url }, "", url);
+                    }
+                } catch (e) {
+                    console.error(e);
+                    location.href = url;
+                } finally {
+                    container.style.opacity = "1";
                 }
+            }
+
+            // Event Listener สำหรับ Click Pagination
+            document.addEventListener("click", function (e) {
+                const link = e.target.closest(".ajax-page");
+                if (!link) return;
+
+                e.preventDefault();
+                loadPage(link.href);
             });
 
-            const html = await response.text();
-            container.innerHTML = html;
+            // Event Listener สำหรับ Browser Back / Forward
+            window.addEventListener("popstate", function (e) {
+                if (!e.state || !e.state.isAjax) {
+                    location.reload();
+                    return;
+                }
 
-            if (push) {
-                history.pushState({ isAjax: true, page: url }, "", url);
+                loadPage(e.state.page, false);
+            });
+        })();
+
+        // เพิ่มการสั่ง reload เมื่อดึงหน้ากลับมาจาก Cache ของ Browser
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                window.location.reload();
             }
-        } catch (e) {
-            console.error(e);
-            location.href = url;
-        } finally {
-            container.style.opacity = "1";
-        }
-    }
-
-    // Event Listener สำหรับ Click Pagination
-    document.addEventListener("click", function (e) {
-        const link = e.target.closest(".ajax-page");
-        if (!link) return;
-
-        e.preventDefault();
-        loadPage(link.href);
-    });
-
-    // Event Listener สำหรับ Browser Back / Forward
-    window.addEventListener("popstate", function (e) {
-        if (!e.state || !e.state.isAjax) {
-            location.reload();
-            return;
-        }
-
-        loadPage(e.state.page, false);
-    });
-})();
-
-// เพิ่มการสั่ง reload เมื่อดึงหน้ากลับมาจาก Cache ของ Browser
-window.addEventListener("pageshow", function (event) {
-    if (event.persisted) {
-        window.location.reload();
-    }
-});
-</script>
+        });
+    </script>
 @endsection

@@ -48,4 +48,22 @@ class LocationController extends Controller
             compact('locations')
         );
     }
+
+    public function detail($slug)
+{
+    $location = DB::table('dc_locations')
+        ->where('slug', $slug)
+        ->first();
+
+
+    if (!$location) {
+        abort(404);
+    }
+
+
+return view(
+    'components.location-detail',
+    compact('location')
+);
+}
 }

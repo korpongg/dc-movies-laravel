@@ -2,8 +2,7 @@
 
 @foreach($locations as $location)
 
-<a class="locations-card"
-href="/locations?parent={{ $location->id }}">
+<a class="locations-card" href="{{ route('locations.detail', $location->slug) }}">
 
     <div class="locations-image">
 
