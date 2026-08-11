@@ -360,3 +360,8 @@
 
     font-weight: 600;
 }
+
+.search-result.search-selected {
+    background: #ffd600;
+    color: #111;
+}

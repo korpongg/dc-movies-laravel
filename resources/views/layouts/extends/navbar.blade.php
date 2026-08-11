@@ -217,5 +217,110 @@ searchInput.addEventListener('input', function () {
         });
 
 });
+let selectedIndex = -1;
 
+
+// =========================
+// KEYBOARD NAVIGATION
+// =========================
+
+searchInput.addEventListener('keydown', function (event) {
+
+    const items = searchDropdown.querySelectorAll('.search-result');
+
+    if (items.length === 0) {
+        return;
+    }
+
+
+    // Arrow Down
+    if (event.key === 'ArrowDown') {
+
+        event.preventDefault();
+
+        selectedIndex++;
+
+        if (selectedIndex >= items.length) {
+            selectedIndex = 0;
+        }
+
+        updateSelectedItem(items);
+
+    }
+
+
+    // Arrow Up
+    else if (event.key === 'ArrowUp') {
+
+        event.preventDefault();
+
+        selectedIndex--;
+
+        if (selectedIndex < 0) {
+            selectedIndex = items.length - 1;
+        }
+
+        updateSelectedItem(items);
+
+    }
+
+
+    // Enter
+    else if (event.key === 'Enter') {
+
+        event.preventDefault();
+
+        if (selectedIndex >= 0) {
+            items[selectedIndex].click();
+        }
+
+    }
+
+
+    // Escape
+    else if (event.key === 'Escape') {
+
+        searchDropdown.innerHTML = '';
+        searchDropdown.style.display = 'none';
+
+        selectedIndex = -1;
+
+    }
+
+});
+
+
+// =========================
+// HIGHLIGHT ITEM
+// =========================
+
+function updateSelectedItem(items) {
+
+    items.forEach(item => {
+        item.classList.remove('search-selected');
+    });
+
+    if (selectedIndex >= 0) {
+
+        items[selectedIndex].classList.add('search-selected');
+
+        items[selectedIndex].scrollIntoView({
+            block: 'nearest'
+        });
+
+    }
+
+}
+
+document.addEventListener('click', function (event) {
+
+    if (!event.target.closest('.dc-search-wrapper')) {
+
+        searchDropdown.innerHTML = '';
+        searchDropdown.style.display = 'none';
+
+        selectedIndex = -1;
+    }
+
+});
 </script>
