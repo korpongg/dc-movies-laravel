@@ -10,6 +10,8 @@ use App\Http\Controllers\SpeedController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\OrganizationController;
 
+use App\Http\Controllers\SearchController;
+
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -105,3 +107,6 @@ Route::get(
     '/organizations/{slug}',
     [OrganizationController::class, 'detail']
 )->name('organizations.detail');
+
+Route::get('/api/search', [SearchController::class, 'search'])
+    ->name('api.search');

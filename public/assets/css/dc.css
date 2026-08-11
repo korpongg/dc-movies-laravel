@@ -334,22 +334,14 @@ body {
 .btn-add-bag:hover {
     background: #e6c200;
 }
-
 .banner-wrapper {
     display: flex;
-    width: 100vw;
-    /* บังคับให้กว้างเท่าขนาดหน้าจอเสมอ */
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    /* เทคนิคตบให้หลุดออกจาก Container หลักเพื่อเต็มจอ */
     height: 420px;
     overflow: hidden;
     background-color: #008a4b;
 }
-
 
 /* อย่าลืมคุมรูปภาพข้างในไม่ให้มันเบี้ยวหรือสเกลเพี้ยนด้วยครับ */
 
