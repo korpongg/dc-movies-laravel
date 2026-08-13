@@ -110,3 +110,29 @@ Route::get(
 
 Route::get('/api/search', [SearchController::class, 'search'])
     ->name('api.search');
+
+
+    Route::get('/sitemap.xml', function () {
+
+    $characters = DB::table('dc_characters')
+        ->select('slug')
+        ->whereNotNull('slug')
+        ->get();
+
+    $movies = DB::table('dc_movies')
+        ->select('id')
+        ->get();
+
+    $locations = DB::table('dc_locations')
+        ->select('slug')
+        ->whereNotNull('slug')
+        ->get();
+
+    return response()
+        ->view('sitemap', compact(
+            'characters',
+            'movies',
+            'locations'
+        ))
+        ->header('Content-Type', 'application/xml');
+});
