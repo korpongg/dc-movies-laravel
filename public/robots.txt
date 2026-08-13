@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://dc-movies-7b1v.onrender.com/sitemap.xml
