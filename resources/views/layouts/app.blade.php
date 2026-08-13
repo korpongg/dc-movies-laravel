@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
+    <meta name="google-site-verification" content="a9Av4s3Q6NEtzPZU4BshmnMmgtTJXg9D3SIbV2URVso" />
 <title>DC Universe</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
