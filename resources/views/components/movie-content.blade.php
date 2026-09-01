@@ -7,7 +7,7 @@
 <a class="movie-card" href="{{ url('/movies/'.$movie->id) }}">
 
 
-    <div class="movie-poster">
+   <div class="movie-list-poster">
 
 
          <img

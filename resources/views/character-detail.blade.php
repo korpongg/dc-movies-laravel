@@ -81,10 +81,103 @@
 
 
 </section>
+@if($heroes->isNotEmpty() || $villains->isNotEmpty())
+<section class="character-relations-section">
+
+    <div class="character-relations-container">
 
 
 
+        {{-- HEROES --}}
+        @if($heroes->count())
 
+            <div class="character-relation-group">
+
+                <div class="character-relation-title">
+                    <h3>Heroes</h3>
+                    <span>{{ $heroes->count() }}</span>
+                </div>
+
+                <div class="character-relation-list">
+
+                    @foreach($heroes as $related)
+
+                        <a
+                            href="{{ route('characters.detail', $related->slug) }}"
+                            class="character-relation-card"
+                        >
+
+                            <div class="character-relation-image">
+
+                                <img
+                                    src="{{ asset($related->image) }}"
+                                    alt="{{ $related->name }}"
+                                >
+
+                            </div>
+
+                            <div class="character-relation-name">
+                                {{ $related->name }}
+                            </div>
+
+                        </a>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        @endif
+
+
+        {{-- VILLAINS --}}
+        @if($villains->count())
+
+            <div class="character-relation-group">
+
+                <div class="character-relation-title">
+                    <h3>Villains</h3>
+                    <span>{{ $villains->count() }}</span>
+                </div>
+
+                <div class="character-relation-list">
+
+                    @foreach($villains as $related)
+
+                        <a
+                            href="{{ route('characters.detail', $related->slug) }}"
+                            class="character-relation-card"
+                        >
+
+                            <div class="character-relation-image">
+
+                                <img
+                                    src="{{ asset($related->image) }}"
+                                    alt="{{ $related->name }}"
+                                >
+
+                            </div>
+
+                            <div class="character-relation-name">
+                                {{ $related->name }}
+                            </div>
+
+                        </a>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        @endif
+
+    </div>
+
+</section>
+
+@endif
 <section class="info-area">
 
 

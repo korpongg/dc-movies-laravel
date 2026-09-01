@@ -90,6 +90,145 @@
 
 </section>
 
+<section class="movie-characters-section">
+
+    <div class="movie-characters-container">
+
+        <div class="section-header">
+            <h2 class="cha_color">Characters</h2>
+            <span>{{ $characters->count() }} Characters</span>
+        </div>
+
+        {{-- HEROES --}}
+        @php
+            $heroes = $characters->where('alignment', 'Hero');
+            $villains = $characters->where('alignment', 'Villain');
+            $antiHeroes = $characters->where('alignment', 'Anti-Hero');
+        @endphp
+
+        @if($heroes->count())
+            <div class="character-category">
+
+                <div class="character-category-title">
+                    <h3>Heroes</h3>
+                    <span>{{ $heroes->count() }}</span>
+                </div>
+
+                <div class="character-circle-list">
+
+                    @foreach($heroes as $character)
+
+                        <a
+                            href="{{ route('characters.detail', $character->slug) }}"
+                            class="character-circle-card"
+                        >
+
+                            <div class="character-circle-image">
+                                <img
+                                    src="{{ asset($character->image) }}"
+                                    alt="{{ $character->name }}"
+                                >
+                            </div>
+
+                            <div class="character-circle-name">
+                                {{ $character->name }}
+                            </div>
+
+                        </a>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+        @endif
+
+
+        {{-- VILLAINS --}}
+        @if($villains->count())
+            <div class="character-category">
+
+                <div class="character-category-title">
+                    <h3>Villains</h3>
+                    <span>{{ $villains->count() }}</span>
+                </div>
+
+                <div class="character-circle-list">
+
+                    @foreach($villains as $character)
+
+                        <a
+                            href="{{ route('characters.detail', $character->slug) }}"
+                            class="character-circle-card"
+                        >
+
+                            <div class="character-circle-image">
+
+                                <img
+                                    src="{{ asset($character->image) }}"
+                                    alt="{{ $character->name }}"
+                                >
+
+                            </div>
+
+                            <div class="character-circle-name">
+                                {{ $character->name }}
+                            </div>
+
+                        </a>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+        @endif
+
+
+        {{-- ANTI HEROES --}}
+        @if($antiHeroes->count())
+            <div class="character-category">
+
+                <div class="character-category-title">
+                    <h3>Anti-Heroes</h3>
+                    <span>{{ $antiHeroes->count() }}</span>
+                </div>
+
+                <div class="character-circle-list">
+
+                    @foreach($antiHeroes as $character)
+
+                        <a
+                            href="{{ route('characters.detail', $character->slug) }}"
+                            class="character-circle-card"
+                        >
+
+                            <div class="character-circle-image">
+
+                                <img
+                                    src="{{ asset( $character->image) }}"
+                                    alt="{{ $character->name }}"
+                                >
+
+                            </div>
+
+                            <div class="character-circle-name">
+                                {{ $character->name }}
+                            </div>
+
+                        </a>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+        @endif
+
+    </div>
+
+</section>
+
 <section class="movie-info-section">
 
     <div class="movie-info-grid">

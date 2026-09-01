@@ -12,7 +12,12 @@ class CharacterController extends Controller
 public function detail($slug)
 {
     $character = DB::table('dc_characters as c')
-        ->leftJoin('dc_character_details as d', 'c.id', '=', 'd.character_id')
+        ->leftJoin(
+            'dc_character_details as d',
+            'c.id',
+            '=',
+            'd.character_id'
+        )
         ->select(
             'c.*',
             'd.biography',
@@ -38,7 +43,48 @@ public function detail($slug)
         abort(404);
     }
 
-    return view('character-detail', compact('character'));
+    /*
+    |--------------------------------------------------------------------------
+    | Character Relations
+    |--------------------------------------------------------------------------
+    */
+
+    $relations = DB::table('dc_character_relations as r')
+        ->join(
+            'dc_characters as c',
+            'r.related_character_id',
+            '=',
+            'c.id'
+        )
+        ->leftJoin('dc_images as i', function ($join) {
+            $join->on('c.id', '=', 'i.character_id')
+                ->where('i.image_type', 'profile');
+        })
+        ->where('r.character_id', $character->id)
+        ->where('c.active', 1)
+        ->select(
+            'c.id',
+            'c.name',
+            'c.slug',
+            'c.real_name',
+            'c.alignment',
+            'i.image',
+            'r.relation_type'
+        )
+        ->orderBy('c.name')
+        ->get();
+
+    $heroes = $relations->where('relation_type', 'Hero');
+    $villains = $relations->where('relation_type', 'Villain');
+
+    return view(
+        'character-detail',
+        compact(
+            'character',
+            'heroes',
+            'villains'
+        )
+    );
 }
 public function dc(Request $request)
 {
@@ -108,4 +154,6 @@ public function dc(Request $request)
         compact('characters', 'type')
     );
 }
+
+
 }
