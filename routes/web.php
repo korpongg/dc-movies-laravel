@@ -98,6 +98,10 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
+
+Route::get('/team/{slug}', [TeamController::class, 'detail'])
+    ->name('team.detail');
+
 Route::get(
     '/teams/{slug}',
     [TeamController::class, 'detail']

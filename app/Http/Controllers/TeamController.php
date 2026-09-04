@@ -18,6 +18,36 @@ class TeamController extends Controller
             abort(404);
         }
 
-        return view('team-detail', compact('team'));
+        $characters = DB::table('dc_team_members as tm')
+            ->join(
+                'dc_characters as c',
+                'tm.character_id',
+                '=',
+                'c.id'
+            )
+            ->leftJoin('dc_images as i', function ($join) {
+                $join->on('c.id', '=', 'i.character_id')
+                    ->where('i.image_type', 'profile');
+            })
+            ->where('tm.team_id', $team->id)
+            ->where('c.active', 1)
+            ->select(
+                'c.id',
+                'c.name',
+                'c.slug',
+                'c.real_name',
+                'c.alignment',
+                'i.image'
+            )
+            ->orderBy('c.name')
+            ->get();
+
+        return view(
+            'team-detail',
+            compact(
+                'team',
+                'characters'
+            )
+        );
     }
 }
